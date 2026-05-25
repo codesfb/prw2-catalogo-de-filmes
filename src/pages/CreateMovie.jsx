@@ -28,8 +28,8 @@ export default  function CreateMovie({ onClose, onCreated }) {
 
         try {
             setLoading(true)
-            const response = await api.post('/movies', filme)
-            if (onCreated) onCreated(response.data)
+            //const response = await api.post('/movies', filme)
+            if (onCreated) await onCreated(filme)
             handleClose()
         } catch (error) {
             console.log(error)

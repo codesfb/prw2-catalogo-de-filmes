@@ -12,8 +12,8 @@ export default function DeleteMovie({ onClose, filme, onDeleted }) {
   const handleDelete = async () => {
     setLoading(true)
     try {
-      await api.delete(`/movies/${filme.id}`)
-      if (onDeleted) onDeleted(filme.id)
+      //await api.delete(`/movies/${filme.id}`)
+      if (onDeleted) await onDeleted(filme.id)
       handleClose()
     } catch (error) {
       console.log(error)
