@@ -1,21 +1,14 @@
 import { X } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import { api } from '../services/api'
 
-export default  function CreateMovie({ onClose, route = '/create'  }) {
-    const navigate = useNavigate()
-
+export default  function CreateMovie({ onClose, onCreated }) {
     const [title, setTitle] = useState('')
     const [genre, setGenre] = useState('')
     const [year, setYear] = useState('')
-
-    useEffect(() => {
-        navigate(route, { replace: false })
-    }, [navigate, route])
+    const [loading, setLoading] = useState(false)
 
     const handleClose = () => {
-        navigate('/')
         if (onClose) onClose()
     }
 
@@ -34,15 +27,14 @@ export default  function CreateMovie({ onClose, route = '/create'  }) {
         }
 
         try {
-
-            await api.post('/movies', filme)
-
+            setLoading(true)
+            const response = await api.post('/movies', filme)
+            if (onCreated) onCreated(response.data)
             handleClose()
-
         } catch (error) {
-
             console.log(error)
-
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -119,8 +111,8 @@ export default  function CreateMovie({ onClose, route = '/create'  }) {
                         className='border border-gray-200 dark:border-neutral-700 p-3 rounded bg-transparent'
                     />
 
-                    <button type='submit' className='bg-green-600 hover:bg-green-700 transition text-white p-3 rounded'>
-                        Salvar Filme
+                    <button type='submit' disabled={loading} className='bg-green-600 hover:bg-green-700 transition text-white p-3 rounded disabled:opacity-60'>
+                        {loading ? 'Salvando...' : 'Salvar Filme'}
                     </button>
 
                 </form>

@@ -4,6 +4,7 @@ import {
     Film,
     Home,
     Plus,
+    Search,
     Moon,
     Sun
 } from 'lucide-react'
@@ -65,6 +66,14 @@ export default function Navbar({ openModal }) {
                         >
                             <Home size={18} />
                             Início
+                        </Link>
+
+                        <Link
+                            to='/search'
+                            className='flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 dark:hover:bg-neutral-800 transition text-sm md:text-base'
+                        >
+                            <Search size={18} />
+                            Buscar
                         </Link>
 
                         <button

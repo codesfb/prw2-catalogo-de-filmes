@@ -1,35 +1,14 @@
-import { useEffect, useState } from 'react'
-import { api } from '../services/api'
+import { useNavigate } from 'react-router-dom'
 
-export default function Home({ openModal }) {
-
-    const [filmes, setFilmes] = useState([])
-
-    async function carregarFilmes() {
-
-        try {
-
-            const response = await api.get('/movies')
-
-            setFilmes(response.data)
-
-        } catch (error) {
-
-            console.log(error)
-
-        }
-    }
-
-    useEffect(() => {
-        carregarFilmes()
-    }, [])
+export default function Home({ openModal, filmes = [] }) {
+    const navigate = useNavigate()
 
     return (
 
         <div>
 
 
-            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 xl:grid-cols-7 gap-4'>
+            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 xl:grid-cols-6 gap-4'>
 
                 {filmes.map(filme => (
 
@@ -62,7 +41,7 @@ export default function Home({ openModal }) {
                             </p>
 
                             <div className='flex items-center justify-between mt-3'>
-                                <button onClick={() => openModal('read', filme)} className='text-sm font-medium hover:underline text-blue-600 dark:text-blue-400'>
+                                <button onClick={() => navigate(`/details/${filme.id}/${encodeURIComponent(filme.title)}`, { state: { filme } })} className='text-sm font-medium hover:underline text-blue-600 dark:text-blue-400'>
                                     Detalhes
                                 </button>
                                 <div className='flex items-center gap-3'>
