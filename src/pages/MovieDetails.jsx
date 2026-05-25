@@ -38,7 +38,7 @@ export default function MovieDetails() {
 
           <div className='rounded-3xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6'>
             <h2 className='text-xl font-semibold mb-3'>Sobre este filme</h2>
-            <p className='text-gray-600 dark:text-gray-300'>Aqui estão os dados que já temos sobre o filme. Caso você recarregue a página, o título continuará disponível pela rota.</p>
+            <p className='text-gray-600 dark:text-gray-300'>Aqui estão os dados que já temos sobre o filme. Ou mais informações sobre o filme se quiser sim.</p>
           </div>
         </div>
       </div>
