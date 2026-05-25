@@ -2,5 +2,5 @@ Hello world
 
 APIs utilizadas:
 
-[text](https://mockapi.io/)
-[text](https://www.themoviedb.org/)
+[Mock APi](https://mockapi.io/)
+[TMDB](https://www.themoviedb.org/)
